@@ -132,9 +132,24 @@ namespace TipCalculator
             // NumberOfGuestsValue
             // 
             this.NumberOfGuestsValue.Location = new System.Drawing.Point(146, 180);
+            this.NumberOfGuestsValue.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.NumberOfGuestsValue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.NumberOfGuestsValue.Name = "NumberOfGuestsValue";
             this.NumberOfGuestsValue.Size = new System.Drawing.Size(43, 20);
             this.NumberOfGuestsValue.TabIndex = 4;
+            this.NumberOfGuestsValue.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label2
             // 
