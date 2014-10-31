@@ -34,13 +34,13 @@ namespace TipCalculator
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.NumberOfGuestsValue = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.QualityOfService = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.BillTotalValue = new System.Windows.Forms.NumericUpDown();
+            this.TaxValue = new System.Windows.Forms.NumericUpDown();
+            this.BillDeductionsValue = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -64,11 +64,11 @@ namespace TipCalculator
             this.TipRateValue = new System.Windows.Forms.Label();
             this.Header.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfGuestsValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QualityOfService)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BillTotalValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TaxValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BillDeductionsValue)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -129,12 +129,12 @@ namespace TipCalculator
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // numericUpDown1
+            // NumberOfGuestsValue
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(146, 180);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown1.TabIndex = 4;
+            this.NumberOfGuestsValue.Location = new System.Drawing.Point(146, 180);
+            this.NumberOfGuestsValue.Name = "NumberOfGuestsValue";
+            this.NumberOfGuestsValue.Size = new System.Drawing.Size(43, 20);
+            this.NumberOfGuestsValue.TabIndex = 4;
             // 
             // label2
             // 
@@ -169,26 +169,26 @@ namespace TipCalculator
             this.label3.TabIndex = 7;
             this.label3.Text = "Quality of Service";
             // 
-            // numericUpDown2
+            // BillTotalValue
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(146, 7);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown2.TabIndex = 8;
+            this.BillTotalValue.Location = new System.Drawing.Point(146, 7);
+            this.BillTotalValue.Name = "BillTotalValue";
+            this.BillTotalValue.Size = new System.Drawing.Size(43, 20);
+            this.BillTotalValue.TabIndex = 8;
             // 
-            // numericUpDown3
+            // TaxValue
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(146, 65);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown3.TabIndex = 10;
+            this.TaxValue.Location = new System.Drawing.Point(146, 65);
+            this.TaxValue.Name = "TaxValue";
+            this.TaxValue.Size = new System.Drawing.Size(43, 20);
+            this.TaxValue.TabIndex = 10;
             // 
-            // numericUpDown4
+            // BillDeductionsValue
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(146, 36);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown4.TabIndex = 12;
+            this.BillDeductionsValue.Location = new System.Drawing.Point(146, 36);
+            this.BillDeductionsValue.Name = "BillDeductionsValue";
+            this.BillDeductionsValue.Size = new System.Drawing.Size(43, 20);
+            this.BillDeductionsValue.TabIndex = 12;
             // 
             // label4
             // 
@@ -274,12 +274,12 @@ namespace TipCalculator
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.QualityOfService);
             this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.numericUpDown2);
+            this.panel3.Controls.Add(this.BillTotalValue);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.numericUpDown1);
+            this.panel3.Controls.Add(this.NumberOfGuestsValue);
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.numericUpDown3);
-            this.panel3.Controls.Add(this.numericUpDown4);
+            this.panel3.Controls.Add(this.TaxValue);
+            this.panel3.Controls.Add(this.BillDeductionsValue);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Location = new System.Drawing.Point(42, 71);
             this.panel3.Name = "panel3";
@@ -448,11 +448,11 @@ namespace TipCalculator
             this.Header.ResumeLayout(false);
             this.Header.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfGuestsValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.QualityOfService)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BillTotalValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TaxValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BillDeductionsValue)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -468,13 +468,13 @@ namespace TipCalculator
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown NumberOfGuestsValue;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TrackBar QualityOfService;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown BillTotalValue;
+        private System.Windows.Forms.NumericUpDown TaxValue;
+        private System.Windows.Forms.NumericUpDown BillDeductionsValue;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

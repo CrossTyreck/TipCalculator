@@ -13,6 +13,7 @@ namespace TipCalculator
     public partial class Bill_Entry_Screen : Form
     {
         private static Bill_Entry_Screen BillEntryScreen;
+        public static int NumberOfGuests = 0;
         public static Bill_Entry_Screen GetBillEntryScreenAccess()
         {
             return (BillEntryScreen == null) ? BillEntryScreen = new Bill_Entry_Screen() : BillEntryScreen;
@@ -21,6 +22,7 @@ namespace TipCalculator
         private Bill_Entry_Screen()
         {
             InitializeComponent();
+            
         }
 
         private void QualityOfService_Scroll(object sender, EventArgs e)
@@ -30,6 +32,7 @@ namespace TipCalculator
 
         private void button1_Click(object sender, EventArgs e)
         {
+            NumberOfGuests = (int)NumberOfGuestsValue.Value;
             TipTailoringScreen.GetTipTailorScreenAccess().Show();
             this.Hide();
         }
