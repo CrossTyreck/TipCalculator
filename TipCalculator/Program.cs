@@ -16,7 +16,7 @@ namespace TipCalculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConfigurationScreen());
+            Application.Run(Bill_Entry_Screen.GetBillEntryScreenAccess());
         }
     }
 }

@@ -12,9 +12,21 @@ namespace TipCalculator
 {
     public partial class ConfigurationScreen : Form
     {
-        public ConfigurationScreen()
+        private static ConfigurationScreen ConfigScreen;
+        public static ConfigurationScreen GetConfigScreenAccess()
+        {
+            return (ConfigScreen == null) ? ConfigScreen = new ConfigurationScreen() : ConfigScreen;
+        }
+
+        private ConfigurationScreen()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Bill_Entry_Screen.GetBillEntryScreenAccess().Show();
+            this.Hide();
         }
     }
 }
