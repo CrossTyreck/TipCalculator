@@ -20,6 +20,14 @@ namespace TipCalculator
             public Label TrackValueLabel { get; set; }
             public Panel AddedTipPanel { get; set; }
 
+            public TipperRow(TextBox box, TrackBar bar, Label dLabel, Label trackValue, Panel wrapper) : this()
+            {
+                Box = box;
+                TBar = bar;
+                DollarLabel = dLabel;
+                TrackValueLabel = trackValue;
+                AddedTipPanel = wrapper;
+            }
             public void SetupControls()
             {
                 Box = new System.Windows.Forms.TextBox();
@@ -39,7 +47,9 @@ namespace TipCalculator
                 TrackValueLabel.Text = TBar.Value.ToString();
             }
         }
-        public Queue<TipperRow> TipperRows { get; set; }
+
+        public static decimal TotalTip = 0;
+        public static Stack<TipperRow> TipperRows { get; set; }
         private int TipperPanelCounter { get; set; }
         private const int TIPPER_HEIGHT = 65;
         private static TipTailoringScreen TipTailorScreen;
@@ -49,32 +59,88 @@ namespace TipCalculator
         }
         private TipTailoringScreen()
         {
-            TipperRows = new Queue<TipperRow>();
+            TipperRows = new Stack<TipperRow>();
+            TipperPanelCounter = 1;
             InitializeComponent();
+            
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void TipTailoringScreen_Activated(object sender, EventArgs e)
+        {
+            if (TipperRows.Count < 1)
+            {
+                TipperRows.Push(GetInitialTipperRow());
+            }
+
+            if (!TipperRows.Count.Equals(Bill_Entry_Screen.NumberOfGuests))
+                SetupTipperRows();
+
+            SetupIndividualTipMax();
+        }
+
+        private void SetupIndividualTipMax()
+        {
+            decimal MaxVal = Math.Round((Bill_Entry_Screen.TipValue / TipperRows.Count), 2);
+            
+            //Maximum being an int is going to give higher values for each persons allowed tip amount
+            this.TipperAmount.Maximum = (int)Math.Ceiling(MaxVal);
+            this.TipperAmount.Value = 0;
+            this.TipperTipValue.Text = this.TipperAmount.Value.ToString();
+            
+            foreach (TipperRow row in TipperRows)
+            {
+                row.TBar.Maximum = (int)Math.Ceiling(MaxVal);
+                row.TBar.Value = 0;
+                row.TrackValueLabel.Text = row.TBar.Value.ToString();
+            }
+
+        }
+        public void AddTipsUp()
+        {
+            TotalTip = 0;
+
+            foreach(TipperRow row in TipperRows)
+            {
+                TotalTip += row.TBar.Value;
+            }
+
+        }
+        private TipperRow GetInitialTipperRow()
+        {
+            TextBox box = new TextBox();
+            box.Text = this.TipperName.Text;
+
+            TrackBar bar = new TrackBar();
+            bar.Value = this.TipperAmount.Value;
+
+            Label dLabel = new Label();
+            dLabel.Text = this.TipperDollar.Text;
+
+            Label tipLabel = new Label();
+            tipLabel.Text = this.TipperTipValue.Text;
+
+            Panel wrapper = new Panel();
+
+            TipperRow InitialRow = new TipperRow(box, bar, dLabel, tipLabel, wrapper);
+
+            return InitialRow;
+        }
+        private void BackToBillEntryScreen_Click(object sender, EventArgs e)
         {
             Bill_Entry_Screen.GetBillEntryScreenAccess().Show();
             this.Hide();
         }
-        private void TipTailoringScreen_Activated(object sender, EventArgs e)
-        {
-            if (!TipperRows.Count.Equals(Bill_Entry_Screen.NumberOfGuests - 1))
-            SetupTipperRows();
-        }
         public void SetupTipperRows()
         {
-            for (TipperPanelCounter = 1; TipperPanelCounter <= Math.Min(Bill_Entry_Screen.NumberOfGuests, 5) - 1; )
+            while (TipperRows.Count < Math.Min(Bill_Entry_Screen.NumberOfGuests, 5))
             {
                 CreateAnotherRow();
             }
 
-            while(TipperRows.Count > Bill_Entry_Screen.NumberOfGuests -1)
+            while (TipperRows.Count > Bill_Entry_Screen.NumberOfGuests)
             {
-                RemoveRow(TipperRows.Dequeue());
+                RemoveRow(TipperRows.Pop());
             }
         }
-
         private void CreateAnotherRow()
         {
             TipperRow AddedRow = new TipperRow();
@@ -115,23 +181,23 @@ namespace TipCalculator
 
             this.Controls.Add(AddedRow.AddedTipPanel);
 
-            TipperRows.Enqueue(AddedRow);
+            TipperRows.Push(AddedRow);
 
         }
-
         private void RemoveRow(TipperRow rowToRemove)
         {
             rowToRemove.Box.Dispose();
             rowToRemove.TBar.Dispose();
-            rowToRemove.DollarLabel.Dispose(); 
+            rowToRemove.DollarLabel.Dispose();
             rowToRemove.TrackValueLabel.Dispose();
             rowToRemove.AddedTipPanel.Dispose();
+
+            TipperPanelCounter -= 1;
         }
         private void TipperAmount_Scroll(object sender, EventArgs e)
         {
             TipperTipValue.Text = TipperAmount.Value.ToString();
         }
-
 
     }
 }

@@ -15,6 +15,10 @@ namespace TipCalculator
         private static Bill_Entry_Screen BillEntryScreen;
         public static int NumberOfGuests = 0;
         public static int QualityValue = 0;
+        private decimal TipRate { get; set; }
+
+        public static decimal TipValue = 0;
+
         public static Bill_Entry_Screen GetBillEntryScreenAccess()
         {
             return (BillEntryScreen == null) ? BillEntryScreen = new Bill_Entry_Screen() : BillEntryScreen;
@@ -28,17 +32,17 @@ namespace TipCalculator
         private void BillEntryScreen_Activated(object sender, EventArgs e)
         {
             SetBillDefaults();
-            CalculateTotal();
+            CalculateTipRate();
             CalculateTip();
+            CalculatePerPersonTip();
+            CalculateTotal();
         }
 
         private void QualityOfService_Scroll(object sender, EventArgs e)
         {
-            int num = 0;
             QualityBarValue.Text = QualityOfService.Value.ToString();
-            //Ensures value corresponds to text displayed. In case of error parsing default back to QualityOfService bar value.
-            QualityValue = (int.TryParse(QualityBarValue.Text, out num) ? num : QualityOfService.Value);
-            CalculateTip();
+            QualityValue = QualityOfService.Value;
+            ControlChange(sender, e);
         }
 
         private void TailorTip_Click(object sender, EventArgs e)
@@ -57,12 +61,15 @@ namespace TipCalculator
 
         private void ControlChange(object sender, EventArgs e)
         {
+            CalculateTip();
+            CalculateTipRate();
+            CalculatePerPersonTip();
             CalculateTotal();
         }
 
         private void SetBillDefaults()
         {
-            
+
             if (!ConfigurationScreen.ShowTax)
             {
                 lblTax.Font = new Font(lblTax.Font, FontStyle.Strikeout);
@@ -93,8 +100,8 @@ namespace TipCalculator
             if (BillDeductionsValue.Enabled) { TotalBillValue += BillDeductionsValue.Value; }
             if (TaxValue.Enabled) { TotalBillValue += TaxValue.Value; }
 
-            SetTotalBillAndTipValue(TotalBillValue);
-            
+            SetTotalBillAndTipValue(TotalBillValue + TipValue);
+
         }
 
         private void SetTotalBillAndTipValue(decimal total)
@@ -102,30 +109,55 @@ namespace TipCalculator
             TotalBillAndTipValue.Text = total.ToString();
         }
 
-        private void CalculateTip()
+        private void CalculateTipRate()
         {
-            switch(QualityOfService.Value)
+            switch (QualityOfService.Value)
             {
                 case 1:
-                    TipRateValue.Text = Math.Round(ConfigurationScreen.MinTip, 2).ToString();
+                    TipRate = Math.Round(ConfigurationScreen.MinTip, 2);
+                    TipRateValue.Text = TipRate.ToString();
                     break;
                 case 2:
-                    TipRateValue.Text = (Math.Round(ConfigurationScreen.MaxTip * 0.25M, 2)).ToString();
+                    TipRate = Math.Round(Math.Max(ConfigurationScreen.MaxTip * 0.25M, ConfigurationScreen.MinTip), 2);
+                    TipRateValue.Text = TipRate.ToString();
                     break;
                 case 3:
-                    TipRateValue.Text = (Math.Round(ConfigurationScreen.MaxTip * 0.50M, 2)).ToString();;
+                    TipRate = Math.Round(Math.Max(ConfigurationScreen.MaxTip * 0.5M, ConfigurationScreen.MinTip), 2);
+                    TipRateValue.Text = TipRate.ToString(); ;
                     break;
                 case 4:
-                    TipRateValue.Text = (Math.Round(ConfigurationScreen.MaxTip * 0.75M, 2)).ToString();;
+                    TipRate = Math.Round(Math.Max(ConfigurationScreen.MaxTip * 0.75M, ConfigurationScreen.MinTip), 2);
+                    TipRateValue.Text = TipRate.ToString(); ;
                     break;
                 case 5:
-                    TipRateValue.Text = Math.Round(ConfigurationScreen.MaxTip, 2).ToString();;
+                    TipRate = Math.Round(ConfigurationScreen.MaxTip, 2);
+                    TipRateValue.Text = TipRate.ToString(); ;
                     break;
                 default:
-                    
-                   break;
 
+                    break;
             }
+        }
+
+        private void CalculateTip()
+        {
+            if (TipTailoringScreen.TipperRows != null && TipTailoringScreen.TipperRows.Count == 1)
+            {
+                TipValue = BillTotalValue.Value * (TipRate * 0.01M);
+            }
+            else
+            {
+                TipValue = BillTotalValue.Value * (TipRate * 0.01M);
+            }
+
+            TotalTipValue.Text = Math.Round(TipValue, 2).ToString();
+        }
+
+        private void CalculatePerPersonTip()
+        {
+            NumberOfGuests = (int)NumberOfGuestsValue.Value;
+            PerPersonTipValue.Text = Math.Round((TipValue / NumberOfGuests), 2).ToString();
+
         }
     }
 }

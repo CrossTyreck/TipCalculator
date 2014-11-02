@@ -113,7 +113,7 @@
             this.button1.Text = "<- RETURN";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.BackToBillEntryScreen_Click);
             // 
             // TipTailoringScreen
             // 

@@ -111,7 +111,7 @@ namespace TipCalculator
             this.ConfigureTipButton.Location = new System.Drawing.Point(150, 6);
             this.ConfigureTipButton.Name = "ConfigureTipButton";
             this.ConfigureTipButton.Size = new System.Drawing.Size(125, 33);
-            this.ConfigureTipButton.TabIndex = 3;
+            this.ConfigureTipButton.TabIndex = 5;
             this.ConfigureTipButton.Text = "Configure Tip";
             this.ConfigureTipButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.ConfigureTipButton.UseVisualStyleBackColor = true;
@@ -123,7 +123,7 @@ namespace TipCalculator
             this.TipTailorButton.Location = new System.Drawing.Point(9, 6);
             this.TipTailorButton.Name = "TipTailorButton";
             this.TipTailorButton.Size = new System.Drawing.Size(125, 33);
-            this.TipTailorButton.TabIndex = 2;
+            this.TipTailorButton.TabIndex = 6;
             this.TipTailorButton.Text = "Tip Tailoring";
             this.TipTailorButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.TipTailorButton.UseVisualStyleBackColor = true;
@@ -150,6 +150,7 @@ namespace TipCalculator
             0,
             0,
             0});
+            this.NumberOfGuestsValue.ValueChanged += new System.EventHandler(this.ControlChange);
             // 
             // lblNumGuests
             // 
@@ -170,7 +171,7 @@ namespace TipCalculator
             this.QualityOfService.Minimum = 1;
             this.QualityOfService.Name = "QualityOfService";
             this.QualityOfService.Size = new System.Drawing.Size(189, 45);
-            this.QualityOfService.TabIndex = 6;
+            this.QualityOfService.TabIndex = 3;
             this.QualityOfService.Value = 1;
             this.QualityOfService.Scroll += new System.EventHandler(this.QualityOfService_Scroll);
             // 
@@ -189,26 +190,44 @@ namespace TipCalculator
             // 
             // BillTotalValue
             // 
-            this.BillTotalValue.Location = new System.Drawing.Point(146, 7);
+            this.BillTotalValue.DecimalPlaces = 2;
+            this.BillTotalValue.Location = new System.Drawing.Point(134, 7);
+            this.BillTotalValue.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.BillTotalValue.Name = "BillTotalValue";
-            this.BillTotalValue.Size = new System.Drawing.Size(43, 20);
-            this.BillTotalValue.TabIndex = 8;
+            this.BillTotalValue.Size = new System.Drawing.Size(55, 20);
+            this.BillTotalValue.TabIndex = 0;
             this.BillTotalValue.ValueChanged += new System.EventHandler(this.ControlChange);
             // 
             // TaxValue
             // 
-            this.TaxValue.Location = new System.Drawing.Point(146, 65);
+            this.TaxValue.DecimalPlaces = 2;
+            this.TaxValue.Location = new System.Drawing.Point(134, 65);
+            this.TaxValue.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.TaxValue.Name = "TaxValue";
-            this.TaxValue.Size = new System.Drawing.Size(43, 20);
-            this.TaxValue.TabIndex = 10;
+            this.TaxValue.Size = new System.Drawing.Size(55, 20);
+            this.TaxValue.TabIndex = 2;
             this.TaxValue.ValueChanged += new System.EventHandler(this.ControlChange);
             // 
             // BillDeductionsValue
             // 
-            this.BillDeductionsValue.Location = new System.Drawing.Point(146, 36);
+            this.BillDeductionsValue.DecimalPlaces = 2;
+            this.BillDeductionsValue.Location = new System.Drawing.Point(134, 36);
+            this.BillDeductionsValue.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.BillDeductionsValue.Name = "BillDeductionsValue";
-            this.BillDeductionsValue.Size = new System.Drawing.Size(43, 20);
-            this.BillDeductionsValue.TabIndex = 12;
+            this.BillDeductionsValue.Size = new System.Drawing.Size(55, 20);
+            this.BillDeductionsValue.TabIndex = 1;
             this.BillDeductionsValue.ValueChanged += new System.EventHandler(this.ControlChange);
             // 
             // lblBillTotal
@@ -311,7 +330,7 @@ namespace TipCalculator
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(130, 69);
+            this.label14.Location = new System.Drawing.Point(120, 69);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(13, 13);
             this.label14.TabIndex = 17;
@@ -321,7 +340,7 @@ namespace TipCalculator
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(130, 39);
+            this.label12.Location = new System.Drawing.Point(120, 39);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(13, 13);
             this.label12.TabIndex = 16;
@@ -331,7 +350,7 @@ namespace TipCalculator
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(130, 10);
+            this.label11.Location = new System.Drawing.Point(120, 10);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(13, 13);
             this.label11.TabIndex = 15;
@@ -345,6 +364,7 @@ namespace TipCalculator
             this.QualityBarValue.Size = new System.Drawing.Size(24, 21);
             this.QualityBarValue.TabIndex = 14;
             this.QualityBarValue.Text = "1";
+            this.QualityBarValue.TextChanged += new System.EventHandler(this.ControlChange);
             // 
             // panel4
             // 
@@ -415,7 +435,7 @@ namespace TipCalculator
             this.TotalBillAndTipValue.Name = "TotalBillAndTipValue";
             this.TotalBillAndTipValue.Size = new System.Drawing.Size(36, 16);
             this.TotalBillAndTipValue.TabIndex = 21;
-            this.TotalBillAndTipValue.Text = "0.56";
+            this.TotalBillAndTipValue.Text = "0.00";
             this.TotalBillAndTipValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PerPersonTipValue
@@ -426,7 +446,7 @@ namespace TipCalculator
             this.PerPersonTipValue.Name = "PerPersonTipValue";
             this.PerPersonTipValue.Size = new System.Drawing.Size(36, 16);
             this.PerPersonTipValue.TabIndex = 20;
-            this.PerPersonTipValue.Text = "1.00";
+            this.PerPersonTipValue.Text = "0.00";
             this.PerPersonTipValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TotalTipValue
@@ -435,9 +455,9 @@ namespace TipCalculator
             this.TotalTipValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotalTipValue.Location = new System.Drawing.Point(177, 41);
             this.TotalTipValue.Name = "TotalTipValue";
-            this.TotalTipValue.Size = new System.Drawing.Size(52, 16);
+            this.TotalTipValue.Size = new System.Drawing.Size(36, 16);
             this.TotalTipValue.TabIndex = 19;
-            this.TotalTipValue.Text = "120.00";
+            this.TotalTipValue.Text = "0.00";
             this.TotalTipValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TipRateValue
@@ -448,7 +468,7 @@ namespace TipCalculator
             this.TipRateValue.Name = "TipRateValue";
             this.TipRateValue.Size = new System.Drawing.Size(36, 16);
             this.TipRateValue.TabIndex = 18;
-            this.TipRateValue.Text = "0.40";
+            this.TipRateValue.Text = "0.00";
             this.TipRateValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Bill_Entry_Screen
