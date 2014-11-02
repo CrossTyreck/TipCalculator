@@ -14,6 +14,7 @@ namespace TipCalculator
     {
         private static Bill_Entry_Screen BillEntryScreen;
         public static int NumberOfGuests = 0;
+        public static int QualityValue = 0;
         public static Bill_Entry_Screen GetBillEntryScreenAccess()
         {
             return (BillEntryScreen == null) ? BillEntryScreen = new Bill_Entry_Screen() : BillEntryScreen;
@@ -27,7 +28,10 @@ namespace TipCalculator
 
         private void QualityOfService_Scroll(object sender, EventArgs e)
         {
-            TrackBarValue.Text = QualityOfService.Value.ToString();
+            int num = 0;
+            QualityBarValue.Text = QualityOfService.Value.ToString();
+            //Ensures value corresponds to text displayed. In case of error parsing default back to QualityOfService bar value.
+            QualityValue = (int.TryParse(QualityBarValue.Text, out num) ? num : QualityOfService.Value);
         }
 
         private void button1_Click(object sender, EventArgs e)

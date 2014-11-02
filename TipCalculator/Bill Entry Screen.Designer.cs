@@ -32,8 +32,8 @@ namespace TipCalculator
             this.Header = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ConfigureTipButton = new System.Windows.Forms.Button();
+            this.TipTailorButton = new System.Windows.Forms.Button();
             this.NumberOfGuestsValue = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.QualityOfService = new System.Windows.Forms.TrackBar();
@@ -52,7 +52,7 @@ namespace TipCalculator
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.TrackBarValue = new System.Windows.Forms.TextBox();
+            this.QualityBarValue = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -98,36 +98,36 @@ namespace TipCalculator
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(0)))), ((int)(((byte)(51)))));
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.ConfigureTipButton);
+            this.panel1.Controls.Add(this.TipTailorButton);
             this.panel1.Location = new System.Drawing.Point(-1, 418);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(286, 45);
             this.panel1.TabIndex = 3;
             // 
-            // button2
+            // ConfigureTipButton
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(150, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 33);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Configure Tip";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ConfigureTipButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConfigureTipButton.Location = new System.Drawing.Point(150, 6);
+            this.ConfigureTipButton.Name = "ConfigureTipButton";
+            this.ConfigureTipButton.Size = new System.Drawing.Size(125, 33);
+            this.ConfigureTipButton.TabIndex = 3;
+            this.ConfigureTipButton.Text = "Configure Tip";
+            this.ConfigureTipButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.ConfigureTipButton.UseVisualStyleBackColor = true;
+            this.ConfigureTipButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // TipTailorButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(9, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 33);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Tip Tailoring";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.TipTailorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TipTailorButton.Location = new System.Drawing.Point(9, 6);
+            this.TipTailorButton.Name = "TipTailorButton";
+            this.TipTailorButton.Size = new System.Drawing.Size(125, 33);
+            this.TipTailorButton.TabIndex = 2;
+            this.TipTailorButton.Text = "Tip Tailoring";
+            this.TipTailorButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.TipTailorButton.UseVisualStyleBackColor = true;
+            this.TipTailorButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // NumberOfGuestsValue
             // 
@@ -166,9 +166,12 @@ namespace TipCalculator
             this.QualityOfService.BackColor = System.Drawing.Color.White;
             this.QualityOfService.Cursor = System.Windows.Forms.Cursors.Hand;
             this.QualityOfService.Location = new System.Drawing.Point(3, 118);
+            this.QualityOfService.Maximum = 5;
+            this.QualityOfService.Minimum = 1;
             this.QualityOfService.Name = "QualityOfService";
             this.QualityOfService.Size = new System.Drawing.Size(189, 45);
             this.QualityOfService.TabIndex = 6;
+            this.QualityOfService.Value = 1;
             this.QualityOfService.Scroll += new System.EventHandler(this.QualityOfService_Scroll);
             // 
             // label3
@@ -288,7 +291,7 @@ namespace TipCalculator
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label11);
-            this.panel3.Controls.Add(this.TrackBarValue);
+            this.panel3.Controls.Add(this.QualityBarValue);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.QualityOfService);
             this.panel3.Controls.Add(this.label4);
@@ -334,13 +337,14 @@ namespace TipCalculator
             this.label11.TabIndex = 15;
             this.label11.Text = "$";
             // 
-            // TrackBarValue
+            // QualityBarValue
             // 
-            this.TrackBarValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrackBarValue.Location = new System.Drawing.Point(86, 143);
-            this.TrackBarValue.Name = "TrackBarValue";
-            this.TrackBarValue.Size = new System.Drawing.Size(24, 21);
-            this.TrackBarValue.TabIndex = 14;
+            this.QualityBarValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QualityBarValue.Location = new System.Drawing.Point(86, 143);
+            this.QualityBarValue.Name = "QualityBarValue";
+            this.QualityBarValue.Size = new System.Drawing.Size(24, 21);
+            this.QualityBarValue.TabIndex = 14;
+            this.QualityBarValue.Text = this.QualityOfService.Value.ToString();
             // 
             // panel4
             // 
@@ -483,8 +487,8 @@ namespace TipCalculator
 
         private System.Windows.Forms.Panel Header;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ConfigureTipButton;
+        private System.Windows.Forms.Button TipTailorButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown NumberOfGuestsValue;
         private System.Windows.Forms.Label label2;
@@ -502,7 +506,7 @@ namespace TipCalculator
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox TrackBarValue;
+        private System.Windows.Forms.TextBox QualityBarValue;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
