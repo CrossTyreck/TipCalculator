@@ -35,19 +35,19 @@ namespace TipCalculator
             this.ConfigureTipButton = new System.Windows.Forms.Button();
             this.TipTailorButton = new System.Windows.Forms.Button();
             this.NumberOfGuestsValue = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblNumGuests = new System.Windows.Forms.Label();
             this.QualityOfService = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
             this.BillTotalValue = new System.Windows.Forms.NumericUpDown();
             this.TaxValue = new System.Windows.Forms.NumericUpDown();
             this.BillDeductionsValue = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblBillTotal = new System.Windows.Forms.Label();
+            this.lblTax = new System.Windows.Forms.Label();
+            this.lblBillDeductions = new System.Windows.Forms.Label();
+            this.lblTotalTip = new System.Windows.Forms.Label();
+            this.lblPerPersonTip = new System.Windows.Forms.Label();
+            this.lblTipRate = new System.Windows.Forms.Label();
+            this.lblTotalBillAndTip = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -115,7 +115,7 @@ namespace TipCalculator
             this.ConfigureTipButton.Text = "Configure Tip";
             this.ConfigureTipButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.ConfigureTipButton.UseVisualStyleBackColor = true;
-            this.ConfigureTipButton.Click += new System.EventHandler(this.button2_Click);
+            this.ConfigureTipButton.Click += new System.EventHandler(this.Configure_Click);
             // 
             // TipTailorButton
             // 
@@ -127,7 +127,7 @@ namespace TipCalculator
             this.TipTailorButton.Text = "Tip Tailoring";
             this.TipTailorButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.TipTailorButton.UseVisualStyleBackColor = true;
-            this.TipTailorButton.Click += new System.EventHandler(this.button1_Click);
+            this.TipTailorButton.Click += new System.EventHandler(this.TailorTip_Click);
             // 
             // NumberOfGuestsValue
             // 
@@ -151,15 +151,15 @@ namespace TipCalculator
             0,
             0});
             // 
-            // label2
+            // lblNumGuests
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 180);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Number of Guests";
+            this.lblNumGuests.AutoSize = true;
+            this.lblNumGuests.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumGuests.Location = new System.Drawing.Point(3, 180);
+            this.lblNumGuests.Name = "lblNumGuests";
+            this.lblNumGuests.Size = new System.Drawing.Size(139, 17);
+            this.lblNumGuests.TabIndex = 5;
+            this.lblNumGuests.Text = "Number of Guests";
             // 
             // QualityOfService
             // 
@@ -211,79 +211,79 @@ namespace TipCalculator
             this.BillDeductionsValue.TabIndex = 12;
             this.BillDeductionsValue.ValueChanged += new System.EventHandler(this.ControlChange);
             // 
-            // label4
+            // lblBillTotal
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 17);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Bill Total";
+            this.lblBillTotal.AutoSize = true;
+            this.lblBillTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBillTotal.Location = new System.Drawing.Point(3, 7);
+            this.lblBillTotal.Name = "lblBillTotal";
+            this.lblBillTotal.Size = new System.Drawing.Size(72, 17);
+            this.lblBillTotal.TabIndex = 9;
+            this.lblBillTotal.Text = "Bill Total";
             // 
-            // label5
+            // lblTax
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(34, 17);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Tax";
+            this.lblTax.AutoSize = true;
+            this.lblTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTax.Location = new System.Drawing.Point(3, 65);
+            this.lblTax.Name = "lblTax";
+            this.lblTax.Size = new System.Drawing.Size(34, 17);
+            this.lblTax.TabIndex = 11;
+            this.lblTax.Text = "Tax";
             // 
-            // label6
+            // lblBillDeductions
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 36);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 17);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Bill Deductions";
+            this.lblBillDeductions.AutoSize = true;
+            this.lblBillDeductions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBillDeductions.Location = new System.Drawing.Point(3, 36);
+            this.lblBillDeductions.Name = "lblBillDeductions";
+            this.lblBillDeductions.Size = new System.Drawing.Size(116, 17);
+            this.lblBillDeductions.TabIndex = 13;
+            this.lblBillDeductions.Text = "Bill Deductions";
             // 
-            // label7
+            // lblTotalTip
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(5, 37);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 17);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Total Tip";
+            this.lblTotalTip.AutoSize = true;
+            this.lblTotalTip.BackColor = System.Drawing.Color.White;
+            this.lblTotalTip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalTip.Location = new System.Drawing.Point(5, 37);
+            this.lblTotalTip.Name = "lblTotalTip";
+            this.lblTotalTip.Size = new System.Drawing.Size(73, 17);
+            this.lblTotalTip.TabIndex = 16;
+            this.lblTotalTip.Text = "Total Tip";
             // 
-            // label8
+            // lblPerPersonTip
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(5, 68);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(117, 17);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Per Person Tip";
+            this.lblPerPersonTip.AutoSize = true;
+            this.lblPerPersonTip.BackColor = System.Drawing.Color.White;
+            this.lblPerPersonTip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPerPersonTip.Location = new System.Drawing.Point(5, 68);
+            this.lblPerPersonTip.Name = "lblPerPersonTip";
+            this.lblPerPersonTip.Size = new System.Drawing.Size(117, 17);
+            this.lblPerPersonTip.TabIndex = 15;
+            this.lblPerPersonTip.Text = "Per Person Tip";
             // 
-            // label9
+            // lblTipRate
             // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.White;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(5, 9);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 17);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Tip Rate";
+            this.lblTipRate.AutoSize = true;
+            this.lblTipRate.BackColor = System.Drawing.Color.White;
+            this.lblTipRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipRate.Location = new System.Drawing.Point(5, 9);
+            this.lblTipRate.Name = "lblTipRate";
+            this.lblTipRate.Size = new System.Drawing.Size(70, 17);
+            this.lblTipRate.TabIndex = 14;
+            this.lblTipRate.Text = "Tip Rate";
             // 
-            // label10
+            // lblTotalBillAndTip
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(5, 97);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(144, 17);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "Total (Bill and Tip)";
+            this.lblTotalBillAndTip.AutoSize = true;
+            this.lblTotalBillAndTip.BackColor = System.Drawing.Color.White;
+            this.lblTotalBillAndTip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalBillAndTip.Location = new System.Drawing.Point(5, 97);
+            this.lblTotalBillAndTip.Name = "lblTotalBillAndTip";
+            this.lblTotalBillAndTip.Size = new System.Drawing.Size(144, 17);
+            this.lblTotalBillAndTip.TabIndex = 17;
+            this.lblTotalBillAndTip.Text = "Total (Bill and Tip)";
             // 
             // panel3
             // 
@@ -294,14 +294,14 @@ namespace TipCalculator
             this.panel3.Controls.Add(this.QualityBarValue);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.QualityOfService);
-            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.lblBillTotal);
             this.panel3.Controls.Add(this.BillTotalValue);
-            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.lblNumGuests);
             this.panel3.Controls.Add(this.NumberOfGuestsValue);
-            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.lblBillDeductions);
             this.panel3.Controls.Add(this.TaxValue);
             this.panel3.Controls.Add(this.BillDeductionsValue);
-            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.lblTax);
             this.panel3.Location = new System.Drawing.Point(42, 71);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(198, 215);
@@ -344,7 +344,7 @@ namespace TipCalculator
             this.QualityBarValue.Name = "QualityBarValue";
             this.QualityBarValue.Size = new System.Drawing.Size(24, 21);
             this.QualityBarValue.TabIndex = 14;
-            this.QualityBarValue.Text = this.QualityOfService.Value.ToString();
+            this.QualityBarValue.Text = "1";
             // 
             // panel4
             // 
@@ -358,10 +358,10 @@ namespace TipCalculator
             this.panel4.Controls.Add(this.PerPersonTipValue);
             this.panel4.Controls.Add(this.TotalTipValue);
             this.panel4.Controls.Add(this.TipRateValue);
-            this.panel4.Controls.Add(this.label10);
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.label9);
-            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.lblTotalBillAndTip);
+            this.panel4.Controls.Add(this.lblTotalTip);
+            this.panel4.Controls.Add(this.lblTipRate);
+            this.panel4.Controls.Add(this.lblPerPersonTip);
             this.panel4.Location = new System.Drawing.Point(12, 296);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(260, 134);
@@ -467,6 +467,7 @@ namespace TipCalculator
             this.Name = "Bill_Entry_Screen";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Activated += new System.EventHandler(this.BillEntryScreen_Activated);
             this.Header.ResumeLayout(false);
             this.Header.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -491,19 +492,19 @@ namespace TipCalculator
         private System.Windows.Forms.Button TipTailorButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown NumberOfGuestsValue;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNumGuests;
         private System.Windows.Forms.TrackBar QualityOfService;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown BillTotalValue;
         private System.Windows.Forms.NumericUpDown TaxValue;
         private System.Windows.Forms.NumericUpDown BillDeductionsValue;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblBillTotal;
+        private System.Windows.Forms.Label lblTax;
+        private System.Windows.Forms.Label lblBillDeductions;
+        private System.Windows.Forms.Label lblTotalTip;
+        private System.Windows.Forms.Label lblPerPersonTip;
+        private System.Windows.Forms.Label lblTipRate;
+        private System.Windows.Forms.Label lblTotalBillAndTip;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox QualityBarValue;

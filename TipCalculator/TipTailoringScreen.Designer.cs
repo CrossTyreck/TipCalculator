@@ -46,6 +46,7 @@
             this.TipperName.Name = "TipperName";
             this.TipperName.Size = new System.Drawing.Size(100, 20);
             this.TipperName.TabIndex = 3;
+            this.TipperName.Text = "You";
             // 
             // TipperDollar
             // 

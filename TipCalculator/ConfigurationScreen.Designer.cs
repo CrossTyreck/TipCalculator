@@ -33,24 +33,24 @@ namespace TipCalculator
             this.label2 = new System.Windows.Forms.Label();
             this.Header = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.MinTipPerc = new System.Windows.Forms.NumericUpDown();
+            this.MaxTipPerc = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.TaxFalse = new System.Windows.Forms.RadioButton();
+            this.TaxTrue = new System.Windows.Forms.RadioButton();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.DeductionFalse = new System.Windows.Forms.RadioButton();
+            this.DeductionTrue = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.Header.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MinTipPerc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxTipPerc)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -95,33 +95,35 @@ namespace TipCalculator
             this.button1.Text = "<- RETURN";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.BackToBillEntry_Click);
             // 
-            // numericUpDown1
+            // MinTipPerc
             // 
-            this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.MinTipPerc.DecimalPlaces = 2;
+            this.MinTipPerc.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.numericUpDown1.Location = new System.Drawing.Point(206, 200);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown1.TabIndex = 2;
+            this.MinTipPerc.Location = new System.Drawing.Point(206, 200);
+            this.MinTipPerc.Name = "MinTipPerc";
+            this.MinTipPerc.Size = new System.Drawing.Size(66, 20);
+            this.MinTipPerc.TabIndex = 2;
+            this.MinTipPerc.ValueChanged += new System.EventHandler(this.SetMinMax);
             // 
-            // numericUpDown2
+            // MaxTipPerc
             // 
-            this.numericUpDown2.DecimalPlaces = 2;
-            this.numericUpDown2.Increment = new decimal(new int[] {
+            this.MaxTipPerc.DecimalPlaces = 2;
+            this.MaxTipPerc.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.numericUpDown2.Location = new System.Drawing.Point(206, 226);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown2.TabIndex = 3;
+            this.MaxTipPerc.Location = new System.Drawing.Point(206, 226);
+            this.MaxTipPerc.Name = "MaxTipPerc";
+            this.MaxTipPerc.Size = new System.Drawing.Size(66, 20);
+            this.MaxTipPerc.TabIndex = 3;
+            this.MaxTipPerc.ValueChanged += new System.EventHandler(this.SetMinMax);
             // 
             // label3
             // 
@@ -166,69 +168,73 @@ namespace TipCalculator
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.radioButton2);
-            this.panel5.Controls.Add(this.radioButton1);
+            this.panel5.Controls.Add(this.TaxFalse);
+            this.panel5.Controls.Add(this.TaxTrue);
             this.panel5.Location = new System.Drawing.Point(160, 385);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(112, 30);
             this.panel5.TabIndex = 6;
             // 
-            // radioButton2
+            // TaxFalse
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(56, 7);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(48, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "OFF";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.TaxFalse.AutoSize = true;
+            this.TaxFalse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaxFalse.Location = new System.Drawing.Point(56, 7);
+            this.TaxFalse.Name = "TaxFalse";
+            this.TaxFalse.Size = new System.Drawing.Size(48, 17);
+            this.TaxFalse.TabIndex = 1;
+            this.TaxFalse.TabStop = true;
+            this.TaxFalse.Text = "OFF";
+            this.TaxFalse.UseVisualStyleBackColor = true;
+            this.TaxFalse.CheckedChanged += new System.EventHandler(this.SetTaxDeductions);
             // 
-            // radioButton1
+            // TaxTrue
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(9, 7);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(43, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "ON";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.TaxTrue.AutoSize = true;
+            this.TaxTrue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaxTrue.Location = new System.Drawing.Point(9, 7);
+            this.TaxTrue.Name = "TaxTrue";
+            this.TaxTrue.Size = new System.Drawing.Size(43, 17);
+            this.TaxTrue.TabIndex = 0;
+            this.TaxTrue.TabStop = true;
+            this.TaxTrue.Text = "ON";
+            this.TaxTrue.UseVisualStyleBackColor = true;
+            this.TaxTrue.CheckedChanged += new System.EventHandler(this.SetTaxDeductions);
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.radioButton3);
-            this.panel6.Controls.Add(this.radioButton4);
+            this.panel6.Controls.Add(this.DeductionFalse);
+            this.panel6.Controls.Add(this.DeductionTrue);
             this.panel6.Location = new System.Drawing.Point(160, 421);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(112, 30);
             this.panel6.TabIndex = 7;
             // 
-            // radioButton3
+            // DeductionFalse
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton3.Location = new System.Drawing.Point(56, 7);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(48, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "OFF";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.DeductionFalse.AutoSize = true;
+            this.DeductionFalse.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeductionFalse.Location = new System.Drawing.Point(56, 7);
+            this.DeductionFalse.Name = "DeductionFalse";
+            this.DeductionFalse.Size = new System.Drawing.Size(48, 17);
+            this.DeductionFalse.TabIndex = 2;
+            this.DeductionFalse.TabStop = true;
+            this.DeductionFalse.Text = "OFF";
+            this.DeductionFalse.UseVisualStyleBackColor = true;
+            this.DeductionFalse.CheckedChanged += new System.EventHandler(this.SetTaxDeductions);
             // 
-            // radioButton4
+            // DeductionTrue
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton4.Location = new System.Drawing.Point(9, 7);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(43, 17);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "ON";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.DeductionTrue.AutoSize = true;
+            this.DeductionTrue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeductionTrue.Location = new System.Drawing.Point(9, 7);
+            this.DeductionTrue.Name = "DeductionTrue";
+            this.DeductionTrue.Size = new System.Drawing.Size(43, 17);
+            this.DeductionTrue.TabIndex = 3;
+            this.DeductionTrue.TabStop = true;
+            this.DeductionTrue.Text = "ON";
+            this.DeductionTrue.UseVisualStyleBackColor = true;
+            this.DeductionTrue.CheckedChanged += new System.EventHandler(this.SetTaxDeductions);
             // 
             // label6
             // 
@@ -263,8 +269,8 @@ namespace TipCalculator
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.MaxTipPerc);
+            this.Controls.Add(this.MinTipPerc);
             this.Controls.Add(this.Header);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -273,11 +279,12 @@ namespace TipCalculator
             this.Name = "ConfigurationScreen";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Activated += new System.EventHandler(this.ConfigurationScreen_Activated);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.Header.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MinTipPerc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxTipPerc)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -294,18 +301,18 @@ namespace TipCalculator
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel Header;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown MinTipPerc;
+        private System.Windows.Forms.NumericUpDown MaxTipPerc;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton TaxTrue;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton TaxFalse;
+        private System.Windows.Forms.RadioButton DeductionFalse;
+        private System.Windows.Forms.RadioButton DeductionTrue;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
