@@ -190,6 +190,7 @@ namespace TipCalculator
             this.BillTotalValue.Name = "BillTotalValue";
             this.BillTotalValue.Size = new System.Drawing.Size(43, 20);
             this.BillTotalValue.TabIndex = 8;
+            this.BillTotalValue.ValueChanged += new System.EventHandler(this.ControlChange);
             // 
             // TaxValue
             // 
@@ -197,6 +198,7 @@ namespace TipCalculator
             this.TaxValue.Name = "TaxValue";
             this.TaxValue.Size = new System.Drawing.Size(43, 20);
             this.TaxValue.TabIndex = 10;
+            this.TaxValue.ValueChanged += new System.EventHandler(this.ControlChange);
             // 
             // BillDeductionsValue
             // 
@@ -204,6 +206,7 @@ namespace TipCalculator
             this.BillDeductionsValue.Name = "BillDeductionsValue";
             this.BillDeductionsValue.Size = new System.Drawing.Size(43, 20);
             this.BillDeductionsValue.TabIndex = 12;
+            this.BillDeductionsValue.ValueChanged += new System.EventHandler(this.ControlChange);
             // 
             // label4
             // 

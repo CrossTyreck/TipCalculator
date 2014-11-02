@@ -43,5 +43,11 @@ namespace TipCalculator
             this.Hide();
 
         }
+
+        private void ControlChange(object sender, EventArgs e)
+        {
+            int num = 0;
+            TotalBillAndTipValue.Text = (BillTotalValue.Value + BillDeductionsValue.Value + TaxValue.Value + (int.TryParse(TotalTipValue.Text, out num) ? num : BillTotalValue.Value * (1 + (int.TryParse(TipRateValue.Text, out num) ? num : 0)))).ToString();
+        }
     }
 }

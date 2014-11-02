@@ -59,6 +59,7 @@ namespace TipCalculator
         }
         private void TipTailoringScreen_Activated(object sender, EventArgs e)
         {
+            if (!TipperRows.Count.Equals(Bill_Entry_Screen.NumberOfGuests - 1))
             SetupTipperRows();
         }
         public void SetupTipperRows()
