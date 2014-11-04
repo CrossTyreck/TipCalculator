@@ -133,7 +133,7 @@ namespace TipCalculator
             // 
             this.NumberOfGuestsValue.Location = new System.Drawing.Point(146, 180);
             this.NumberOfGuestsValue.Maximum = new decimal(new int[] {
-            5,
+            35,
             0,
             0,
             0});

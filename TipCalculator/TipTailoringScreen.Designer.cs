@@ -91,7 +91,7 @@
             this.TipperPanel.Controls.Add(this.TipperTipValue);
             this.TipperPanel.Location = new System.Drawing.Point(-1, 69);
             this.TipperPanel.Name = "TipperPanel";
-            this.TipperPanel.Size = new System.Drawing.Size(286, 65);
+            this.TipperPanel.Size = new System.Drawing.Size(300, 65);
             this.TipperPanel.TabIndex = 22;
             // 
             // Header
