@@ -89,7 +89,7 @@
             this.TipperPanel.Controls.Add(this.TipperDollar);
             this.TipperPanel.Controls.Add(this.TipperAmount);
             this.TipperPanel.Controls.Add(this.TipperTipValue);
-            this.TipperPanel.Location = new System.Drawing.Point(-1, 69);
+            this.TipperPanel.Location = new System.Drawing.Point(1, 69);
             this.TipperPanel.Name = "TipperPanel";
             this.TipperPanel.Size = new System.Drawing.Size(300, 65);
             this.TipperPanel.TabIndex = 22;

@@ -62,8 +62,6 @@ namespace TipCalculator
         private const int TIPPER_HEIGHT = 65;
         private const int TIPPER_WIDTH = 300;
         private static TipTailoringScreen TipTailorScreen;
-        private int OldNumOfGuests { get; set; }
-        private int GuestDifference = 0;
 
         public static TipTailoringScreen GetTipTailorScreenAccess()
         {
@@ -73,8 +71,8 @@ namespace TipCalculator
         {
             TipperRows = new Stack<TipperRow>();
             TipperPanelHeightCounter = 1;
-            TipperPanelWidthCounter = 1;
-            OldNumOfGuests = 1;
+            TipperPanelWidthCounter = 0;
+
             InitializeComponent();
 
         }
@@ -85,25 +83,15 @@ namespace TipCalculator
                 TipperRows.Push(GetInitialTipperRow());
             }
 
-            GuestDifference = Math.Abs(OldNumOfGuests - Bill_Entry_Screen.NumberOfGuests) == 0 ? 0 : OldNumOfGuests - Bill_Entry_Screen.NumberOfGuests;
-
-            if (GuestDifference > 0)
+            if (TipperRows.Count < Bill_Entry_Screen.NumberOfGuests)
                 SetupTipperRows(ChangeType.Add);
-            else if (GuestDifference < 0)
+            else if (TipperRows.Count > Bill_Entry_Screen.NumberOfGuests)
                 SetupTipperRows(ChangeType.Remove);
 
+            this.Width = TIPPER_WIDTH * ((int)((TipperRows.Count-1) / 5) + 1);
             SetupIndividualTipMax();
         }
 
-        //private int SetChangeType(int difference)
-        //{
-        //    if (difference < 0)
-        //    {
-        //        return difference * -1;
-        //    }
-
-        //    return difference;
-        //}
         private void SetupIndividualTipMax()
         {
             decimal MaxVal = Math.Round((Bill_Entry_Screen.TipValue / TipperRows.Count), 2);
@@ -116,8 +104,7 @@ namespace TipCalculator
             foreach (TipperRow row in TipperRows)
             {
                 row.TBar.Maximum = (int)Math.Ceiling(MaxVal);
-                row.TBar.Value = 0;
-                row.TrackValueLabel.Text = row.TBar.Value.ToString();
+                row.TrackValueLabel.Text = row.TBar.Value > 0 ? row.TBar.Value.ToString() : "0";
             }
 
         }
@@ -163,8 +150,6 @@ namespace TipCalculator
                 case ChangeType.Add:
                     while (TipperRows.Count < Math.Min(Bill_Entry_Screen.NumberOfGuests, 35))
                     {
-                        if (TipperRows.Count % 5 == 0)
-                            this.Width = TIPPER_WIDTH * ++TipperPanelWidthCounter;
                         CreateAnotherRow();
                     }
 
@@ -172,14 +157,11 @@ namespace TipCalculator
                 case ChangeType.Remove:
                     while (TipperRows.Count > Bill_Entry_Screen.NumberOfGuests)
                     {
-                        if (TipperRows.Count % 5 == 0)
-                            this.Width = TIPPER_WIDTH * --TipperPanelWidthCounter;
                         RemoveRow(TipperRows.Pop());
                     }
                     break;
             }
         }
-
         private void CreateAnotherRow()
         {
             TipperRow AddedRow = new TipperRow();
@@ -216,18 +198,15 @@ namespace TipCalculator
             AddedRow.AddedTipPanel.Controls.Add(AddedRow.DollarLabel);
             AddedRow.AddedTipPanel.Controls.Add(AddedRow.TrackValueLabel);
 
-            if (TipperPanelHeightCounter % 5 > 0)
-            {
-                this.Width = TIPPER_WIDTH * TipperPanelWidthCounter++;
-            }
-
-            AddedRow.AddedTipPanel.Location = new Point(this.TipperPanel.Location.X, this.TipperPanel.Location.Y + (TIPPER_HEIGHT * TipperPanelHeightCounter++));
+            TipperPanelHeightCounter = TipperPanelHeightCounter == 5 ? 0 : TipperPanelHeightCounter;
+            AddedRow.AddedTipPanel.Location = new Point(-this.TipperPanel.Location.X + (TIPPER_WIDTH * (int)(TipperRows.Count/5)), this.TipperPanel.Location.Y + (TIPPER_HEIGHT * TipperPanelHeightCounter++));
             AddedRow.AddedTipPanel.Size = new System.Drawing.Size(TIPPER_WIDTH, TIPPER_HEIGHT);
 
             this.Controls.Add(AddedRow.AddedTipPanel);
 
             TipperRows.Push(AddedRow);
 
+            this.Header.Width = this.Header.Width + (TIPPER_WIDTH * (int)(TipperRows.Count/5));
         }
         private void RemoveRow(TipperRow rowToRemove)
         {
@@ -237,7 +216,10 @@ namespace TipCalculator
             rowToRemove.TrackValueLabel.Dispose();
             rowToRemove.AddedTipPanel.Dispose();
 
-            TipperPanelHeightCounter -= 1;
+            if (--TipperPanelHeightCounter == 0)
+            {
+                TipperPanelHeightCounter = 5;
+            }
         }
         private void TipperAmount_Scroll(object sender, EventArgs e)
         {
